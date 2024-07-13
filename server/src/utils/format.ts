@@ -10,7 +10,7 @@ const formatter = new Intl.NumberFormat("pt-BR", {
 const checkCalculationConsistency = (
   vlTotal: string,
   qtPrestacoes: string,
-  vlPresta: string,
+  vlPresta: string
 ): boolean => {
   const total = Math.floor(parseFloat(vlTotal));
   const installment = parseFloat(qtPrestacoes);
@@ -37,14 +37,22 @@ export const formatRow = async (data: rowType): Promise<formattedRowType> => {
     data.vlPresta
   );
 
-  data.vlPresta = formatter.format(parseFloat(data.vlPresta));
-  data.vlMora = formatter.format(parseFloat(data.vlMora));
-  data.vlMulta = formatter.format(parseFloat(data.vlMulta));
-  data.vlOutAcr = formatter.format(parseFloat(data.vlOutAcr));
-  data.vlIof = formatter.format(parseFloat(data.vlIof));
-  data.vlDescon = formatter.format(parseFloat(data.vlDescon));
-  data.vlAtual = formatter.format(parseFloat(data.vlAtual));
-  data.vlTotal = formatter.format(parseFloat(data.vlTotal));
+  const parseAndFormat = (value: string): string => {
+    const parsedValue = parseFloat(value);
+    if (isNaN(parsedValue)) {
+      return value;
+    }
+    return formatter.format(parsedValue);
+  };
+
+  data.vlPresta = parseAndFormat(data.vlPresta);
+  data.vlMora = parseAndFormat(data.vlMora);
+  data.vlMulta = parseAndFormat(data.vlMulta);
+  data.vlOutAcr = parseAndFormat(data.vlOutAcr);
+  data.vlIof = parseAndFormat(data.vlIof);
+  data.vlDescon = parseAndFormat(data.vlDescon);
+  data.vlAtual = parseAndFormat(data.vlAtual);
+  data.vlTotal = parseAndFormat(data.vlTotal);
 
   const validatedDocument = validateCpfCnpj(data.nrCpfCnpj);
 
