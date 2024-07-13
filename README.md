@@ -1,3 +1,17 @@
+# Como rodar o projeto
+
+- Acessar a pasta client, rodar yarn
+- Rodar yarn dev
+- Acessar a pasta server, rodar yarn
+- Rodar yarn dev
+
+# Funcionamento
+
+Por ser uma vaga fullstack decidi fazer o backend como uma API e optei por fazer um frontend simples para realizar o upload do csv e o download da versão processada. Para usar basta acessar a página web e fazer o upload do csv. 
+
+
+
+
 # Teste Prático para Desenvolvedor Full Stack Kronoos
 
 Você foi designado para desenvolver uma aplicação que deve lidar com grandes volumes de dados. Você deve rodar as seguintes validações e tratativas para cada um dos dados do arquivo e mostrar um retorno ao concluir a rotina. A aplicação será responsável por fornecer uma massa de dados considerável (cerca de 30GB) e deve ser capaz de lidar com dados fornecidos.

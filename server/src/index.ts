@@ -25,13 +25,19 @@ app.post(
   upload.single("file"),
   async (req: Request, res: Response) => {
     try {
+      const startTime = performance.now();
+
       if (!req?.file) {
         res.status(400).send("No file uploaded.");
         return;
       }
       const result: readFileType = await readFile(req.file.buffer);
 
-      const csvContent = writeFile(result.results)
+      const csvContent = writeFile(result.results);
+
+      const endTime = performance.now();
+      const duration = endTime - startTime;
+      console.info(`Duration: ${duration} ms`);
 
       res.header("Content-Type", "text/csv");
       res.attachment("processed.csv");
